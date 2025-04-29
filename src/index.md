@@ -1,5 +1,5 @@
 # Quatrains and More
-## *An Observable Framework site for web apps devoted to chiefly dynamic translations of classical Chinese quatrains such as I have produced over the years*
+## *An Observable Framework site for web apps devoted, chiefly, to dynamic translations of classical Chinese quatrains such as I have produced over the years*
 
 #### John Cayley
 ----

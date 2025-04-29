@@ -10,7 +10,7 @@ pager: false
 <!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
 could be used above to load Google fonts -->
 <div id="frame">
-  <img class= "zi" src="data/riverSnow/tssf_181_2024.jpg">
+  <img class= "rs" src="data/riverSnow/riverSnow.jpg">
   <div id="display" class="fade"></div>
 </div>
 <div id="byline">

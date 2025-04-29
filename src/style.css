@@ -75,14 +75,16 @@ body {
   -moz-transition: opacity 2.5s ease-in-out;
   -webkit-transition: opacity 2.5s ease-in-out;
 }
-
-img.zi {
+img {
   position: absolute;
   border: none;
   /* top: -2.2vw;
   left: -2.5vw; */
   /* height: 100%; */
   width: 25vw;
+}
+
+img.zi {
   filter: invert(1);
 }
 

@@ -10,7 +10,7 @@ pager: false
 <!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
 could be used above to load Google fonts -->
 <div id="frame">
-  <img class= "zi" src="data/tssf_181_2024.jpg">
+  <img class= "zi" src="data/treadingVoid/tssf_181_2024.jpg">
   <div id="display" class="fade"></div>
 </div>
 <div id="byline">
@@ -29,17 +29,17 @@ import { config } from "/config.js";
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this
 // config.running = false; // DEBUG
-import { mod, sleep, msToTime } from "/utils.js";
+import { mod, sleep, msToTime } from "/components/utils.js";
 var displayElem = document.getElementById("display");
 var paraNum, paras, scores, spels;
 // --- preprocessing ---
 console.log("--- preprocessing begins ---"); // DEBUG
-spels = new Map(await FileAttachment("/data/spels.json").json());
+spels = new Map(await FileAttachment("/data/treadingVoid/spels.json").json());
 displayElem.innerHTML = Array.from(spels.values())
   .map((spel) => spel.html)
   .join("");
-paras = await FileAttachment("/data/paras.json").json();
-scores = await FileAttachment("/data/scores.json").json();
+paras = await FileAttachment("/data/treadingVoid/paras.json").json();
+scores = await FileAttachment("/data/treadingVoid/scores.json").json();
 // console.log(paras[config.startingPoint]); // DEBUG , paras, scores
 console.log("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---

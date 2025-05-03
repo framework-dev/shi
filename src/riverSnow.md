@@ -24,7 +24,7 @@ could be used above to load Google fonts -->
 
 ```js
 console.log("--- Treading the Void, Dec 2024 ---");
-import { config } from "/config.js";
+import { config } from "/data/riverSnow/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this
@@ -60,16 +60,17 @@ async function play() {
     toggle = true,
     yieldMsg;
   if (config.fadeWords > 0) await sleep(config.interCycle);
-  while (config.running) { // stopped with false in config
+   // >>> show whatever is currently visible in the display element
+  if (config.fadeWords < 1 ) {
+    console.log(">>> show whatever is currently visible in the display element");
+    displayElem.style.opacity = 1;
+    await sleep(300);
+  }
+  // <<<
+ while (config.running) { // stopped with false in config
     if (paraNum == config.startingPoint) cycStart = Date.now();
     // loop forever ...
     loopMsg = `loop: ${loopCount++}`;
-    // >>> show whatever is currently visible in the display element
-    if (config.fadeWords < 1 ) {
-      displayElem.style.opacity = 1;
-      await sleep(300);
-    }
-    // <<<
     score = scores[scoreNum];
     // >>> (currently) unused mechanism for generating quasi-random scores on the fly (see 'Uchaf'):
     // if (typeof scores[scoreNum] === "string") {
@@ -141,9 +142,11 @@ async function play() {
         });
       }
     } // end of loop thru current score
+    // DEBUG console.log("fadePause", fadePause, "interScr", config.interScore);
     await sleep(fadePause + config.interScore); // pause between scores
     // >>> remove old paragraph:
     if (config.fadeWords === 0) {
+      console.log("--- Remove old paragraph ---");
       displayElem.style.opacity = 0;
       await sleep(275);
       paras[paraNum].forEach(p => document.getElementById(p).classList.toggle("visible"));
@@ -151,7 +154,7 @@ async function play() {
     }
     // <<<
     // bump paraNum
-    paraNum = ++paraNum;
+    if (config.numParas > 1) paraNum = ++paraNum;
     if (paraNum >= (config.numParas + config.startingPoint)) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
       paraNum = config.startingPoint;

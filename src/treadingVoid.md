@@ -24,7 +24,7 @@ could be used above to load Google fonts -->
 
 ```js
 console.log("--- Treading the Void, Dec 2024 ---");
-import { config } from "/config.js";
+import { config } from "/data/treadingVoid/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this

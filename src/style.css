@@ -76,8 +76,8 @@ body {
   -webkit-transition: opacity 2.5s ease-in-out;
 }
 #display.rs {
-  top: 3vw;
-  left: 34vw;
+  top: 2.5vw;
+  left: 33vw;
 }
 img {
   position: absolute;

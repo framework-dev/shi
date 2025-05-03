@@ -11,11 +11,11 @@ pager: false
 could be used above to load Google fonts -->
 <div id="frame">
   <img class= "rs" src="data/riverSnow/riverSnow.jpg">
-  <div id="display" class="fade"></div>
+  <div id="display" class="fade rs"></div>
 </div>
 <div id="byline">
   <!-- <div class="clmleft"> -->
-    <span id="bytext"><cite>Treading the Void</cite> by Liu Yuxi (772-842), 2nd part, translated by John for 2024/25.<br>Contemporary calligraphy from the book <cite>Tangshi Shufa</cite>.</span>
+    <span id="bytext"><cite>River Snow</cite> by Liu Zongyuan (773-819), translated by John for 2020/21.<br>Contemporary calligraphy from the book <cite>Tangshi Shufa</cite>.</span>
   <!-- </div> -->
   <!-- <div class="clmright">
     <span style="font-size: 1.2vw;">John C.</span>

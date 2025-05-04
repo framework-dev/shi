@@ -23,7 +23,7 @@ could be used above to load Google fonts -->
 </div>
 
 ```js
-console.log("--- Treading the Void, Dec 2024 ---");
+console.log("--- River Snow, orig. 2020/21, updated May 2025 ---");
 import { config } from "/data/riverSnow/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
@@ -40,6 +40,17 @@ displayElem.innerHTML = Array.from(spels.values())
   .join("");
 paras = await FileAttachment("/data/riverSnow/paras.json").json();
 scores = await FileAttachment("/data/riverSnow/scores.json").json();
+if (config.charFades) {
+  const spels = document.querySelectorAll('.spel');
+  for (const spel of spels) {
+    let str = spel.textContent;
+    let strlen = str.length;
+    str = [...str].map(char => `<span class="char">${char}</span>`).join('');
+    spel.innerHTML = str;
+    console.log(str);
+    spel.style.opacity = 1;
+  }
+}
 // console.log(paras[config.startingPoint]); // DEBUG , paras, scores
 console.log("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---
@@ -118,11 +129,25 @@ async function play() {
       // console.log(yieldMsg);
       // <<< (in other contexts:) yield yieldMsg;
       //
-      // >>> these next lines do all the work
+      // >>> these next lines do all the WORK
       let elem;
+      let charToggle = async (spel) => {
+        const chars = Array.from(spel.children);
+        for (const char of chars) {
+          char.classList.toggle("visible");
+          // DEBUG console.log(letter.textContent);
+          await sleep(char.classList.contains("visible") ? config.charInterval : 0);
+        }
+      }
       if (spelId !== "PAUSE") {
         elem = document.getElementById(spelId);
-        elem.classList.toggle("visible");
+        if (config.charFades) {
+          await charToggle(elem);
+        } else {
+          elem.classList.toggle("visible");
+        }
+        // DEBUG console.log(elem.innerHTML);
+        // DEV elem.classList.toggle("visible");
       }
       await sleep(score[idx].pause); // pauses usually taken from the temporal data
       if (spelId === "PAUSE") continue;

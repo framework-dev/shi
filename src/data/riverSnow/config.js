@@ -5,6 +5,8 @@ const config = {
   startingPoint: 0,
   numParas: 1,
   running: true,
+  charFades: true,
+  charInterval: 8,
   fadeWords: -1, // zero for no autoFade; -1 for scores do fading
   // cosmetic
   // "rColumn": 33,

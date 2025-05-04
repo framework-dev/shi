@@ -167,7 +167,7 @@ span {
     text-shadow .7s ease-in-out;
   -webkit-transition: color .7s ease-in-out,
     text-shadow .7s ease-in-out;
-}
+  }
 
 .clmleft {
   float: left;
@@ -196,6 +196,19 @@ span {
 .visible {
   color: var(--text);
   /* text-shadow: .6ch .2ch .7ch var(--em); */
+}
+
+.char {
+  opacity: 0;
+  transition: opacity 1.3s ease-in-out;
+  -o-transition: opacity 1.3s ease-in-out;
+  -ms-transition: opacity 1.3s ease-in-out;
+  -moz-transition: opacity 1.3s ease-in-out;
+  -webkit-transition: opacity 1.3s ease-in-out;
+}
+
+.char.visible {
+  opacity: 1;
 }
 
 .spel {

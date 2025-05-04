@@ -47,7 +47,7 @@ if (config.charFades) {
     let strlen = str.length;
     str = [...str].map(char => `<span class="char">${char}</span>`).join('');
     spel.innerHTML = str;
-    console.log(str);
+    // DEBUG console.log(str);
     spel.style.opacity = 1;
   }
 }
@@ -147,7 +147,6 @@ async function play() {
           elem.classList.toggle("visible");
         }
         // DEBUG console.log(elem.innerHTML);
-        // DEV elem.classList.toggle("visible");
       }
       await sleep(score[idx].pause); // pauses usually taken from the temporal data
       if (spelId === "PAUSE") continue;
@@ -171,14 +170,14 @@ async function play() {
     await sleep(fadePause + config.interScore); // pause between scores
     // >>> remove old paragraph:
     if (config.fadeWords === 0) {
-      console.log("--- Remove old paragraph ---");
+      console.log(">>> remove old paragraph");
       displayElem.style.opacity = 0;
       await sleep(275);
       paras[paraNum].forEach(p => document.getElementById(p).classList.toggle("visible"));
       await sleep(50);
     }
     // <<<
-    // bump paraNum
+    // bump paraNum if more than one
     if (config.numParas > 1) paraNum = ++paraNum;
     if (paraNum >= (config.numParas + config.startingPoint)) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG

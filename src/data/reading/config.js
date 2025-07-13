@@ -7,7 +7,7 @@ const config = {
   running: true,
   charFades: true,
   charInterval: 8,
-  fadeWords: -1, // zero for no autoFade; -1 for scores do fading
+  fadeWords: 5, // zero for no autoFade; -1 for scores do fading
   // cosmetic
   // "rColumn": 33,
   // lineHeight: lineHeight,
@@ -18,8 +18,8 @@ const config = {
   // these times are all now hundredths of seconds
   creditsPause: 0, // zero for no credits
   interCycle: 300,
-  interScore: 0,
+  interScore: 300,
   scoredPause: 100,
-  slower: 0
+  slower: 1.4
 }
 export { config };

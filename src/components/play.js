@@ -1,4 +1,5 @@
-async function play() {
+import { mod, sleep, msToTime } from "/components/utils.js";
+async function play(config, displayElem, scores, spels) {
   console.log("entered play()");
   let cycStart,
     fadePause = 0,
@@ -42,6 +43,7 @@ async function play() {
     // }
     // <<<
     // console.log(scoreSet, "scoreNum", scoreNum, scoreSet[scoreNum]); // DEBUG
+    console.log("scores:",scores); // DEBUG
     console.log("score:", scoreNum, "score items:", score.length);
     //
     // This is where we inner-loop through each item in the current score and
@@ -92,7 +94,7 @@ async function play() {
         }
         // DEBUG console.log(elem.innerHTML);
       }
-      await sleep(score[idx].pause); // pauses usually taken from the temporal data
+      await sleep(score[idx].pause * config.slower); // pauses usually taken from the temporal data
       if (spelId === "PAUSE") continue;
       // not a pause item, so check for fadeWords
       if (fadeWords > 0) {
@@ -105,20 +107,24 @@ async function play() {
       if (fadePause > 0) {
         // let ridx = mod(idx - fadeWords, score.length);
         // fadePause += score[idx].pause - score[ridx].pause;
-        sleep(fadePause).then(() => {
-          elem.classList.toggle("visible");
+        sleep(fadePause * config.slower).then(async () => {
+          if (config.charFades) {
+            await charToggle(elem);
+          } else {
+            elem.classList.toggle("visible");
+          }
         });
       }
     } // end of loop thru current score
     // DEBUG console.log("fadePause", fadePause, "interScr", config.interScore);
-    await sleep(fadePause + config.interScore); // pause between scores
+    await sleep((fadePause + config.interScore) * config.slower); // pause between scores
     // >>> remove old paragraph:
     if (config.fadeWords === 0) {
       console.log(">>> remove old paragraph");
       displayElem.style.opacity = 0;
-      await sleep(275);
+      await sleep(275 * config.slower);
       paras[paraNum].forEach(p => document.getElementById(p).classList.toggle("visible"));
-      await sleep(50);
+      await sleep(50 * config.slower);
     }
     // <<<
     // bump paraNum if more than one
@@ -126,13 +132,13 @@ async function play() {
     if (paraNum >= (config.numParas + config.startingPoint)) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
       paraNum = config.startingPoint;
-      await sleep(config.interCycle); // end of cycle pause
+      await sleep(config.interCycle * config.slower); // end of cycle pause
       if (config.creditsPause > 0) {
         let bl = document.getElementById("byline");
         bl.style.opacity = 1;
-        await sleep(config.creditsPause); // credits pause
+        await sleep(config.creditsPause * config.slower); // credits pause
         bl.style.opacity = 0;
-        await sleep(config.interCycle); // end of cycle pause
+        await sleep(config.interCycle * config.slower); // end of cycle pause
       }
     }
     // bump scoreNum

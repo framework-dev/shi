@@ -29,7 +29,6 @@ import { config } from "/data/reading/config.js";
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this
 // config.running = false; // DEBUG
-import { mod, sleep, msToTime } from "/components/utils.js";
 var displayElem = document.getElementById("display");
 var paraNum, paras, scores, spels;
 // --- preprocessing ---
@@ -55,5 +54,6 @@ if (config.charFades) {
 console.log("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---
 import { play } from "/components/play.js";
-if (config.running) play();
+// console.log("scores:", scores); // DEBUG
+if (config.running) play(config, displayElem, scores, spels);
 ```

@@ -20,6 +20,6 @@ const config = {
   interCycle: 300,
   interScore: 300,
   scoredPause: 100,
-  slower: 1.4
+  slower: 1.3
 }
 export { config };

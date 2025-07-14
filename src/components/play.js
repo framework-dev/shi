@@ -101,7 +101,7 @@ async function play(config, displayElem, scores, spels) {
         fadePause = 0;
         for (let fi = 0; fi < fadeWords; ++fi) {
           let fidx = mod((fi + idx + 1), score.length);
-          fadePause += score[fidx].pause;
+          fadePause += score[fidx].id != "PAUSE" ? score[fidx].pause : 0;
         }
       }
       if (fadePause > 0) {

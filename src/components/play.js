@@ -23,10 +23,12 @@ async function play(config, displayElem, scores, spels) {
     await sleep(300);
   }
   // <<<
+ if (typeof config.paraFadeWords != "undefined") fadeWords = config.paraFadeWords[paraNum];
  while (config.running) { // stopped with false in config
     if (paraNum == config.startingPoint) cycStart = Date.now();
     // loop forever ...
     loopMsg = `loop: ${loopCount++}`;
+    // TODO - ALLOW MULTIPLE SCORED PER PARA (scoreNum goes to 0 on paraNum change)
     score = scores[scoreNum];
     // >>> (currently) unused mechanism for generating quasi-random scores on the fly (see 'Uchaf'):
     // if (typeof scores[scoreNum] === "string") {
@@ -128,10 +130,12 @@ async function play(config, displayElem, scores, spels) {
     }
     // <<<
     // bump paraNum if more than one
-    if (config.numParas > 1) paraNum = ++paraNum;
-    if (paraNum >= (config.numParas + config.startingPoint)) {
+    if (config.numParas > 1) {
+      paraNum = ++paraNum % config.numParas;
+      if (paraNum == 0) paraNum += config.startingPoint;
+    }
+    if (paraNum == config.startingPoint) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
-      paraNum = config.startingPoint;
       await sleep(config.interCycle * config.slower); // end of cycle pause
       if (config.creditsPause > 0) {
         let bl = document.getElementById("byline");

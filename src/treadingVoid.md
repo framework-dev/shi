@@ -114,7 +114,7 @@ async function play() {
       yieldMsg =
         loopMsg + `, score: ${scoreNum}, item: ${idx}, paraNum: ${paraNum}, id: ${spelId}, `;
       yieldMsg += `string: '${str}', pause: ${score[idx].pause}`;
-      // console.log(yieldMsg);
+      console.log(yieldMsg);
       // <<< (in other contexts:) yield yieldMsg;
       //
       // >>> these next lines do all the work

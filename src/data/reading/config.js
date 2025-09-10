@@ -4,6 +4,7 @@ const linesPer = Math.floor(heightVw / lineHeight);
 const config = {
   startingPoint: 0,
   numParas: 1,
+  paraFadeWords: undefined, // undefined, or an array with interger for each para
   running: true,
   charFades: true,
   charInterval: 8,

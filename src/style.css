@@ -19,13 +19,14 @@
   --text: floralwhite;
   --em: white;
   --context: #af5c13;
-  --bkgnd: black;
+  --body-bkgnd: black;
+  --frame-bkgnd: #00182f;
   /* possible clrs.cc blues #0074D9 lighter #7FDBFF teal #39CCCC */
   /* very dark blue: #00182f */
 }
 
 html {
-  background-color: var(--bkgnd);
+  background-color: var(--body-bkgnd);
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -39,9 +40,18 @@ html {
 body {
   margin-top: 0;
   color: var(--text);
-  background-color: var(--bkgnd);
+  background-color: var(--body-bkgnd);
   cursor: none;
-  font-family: "Source Serif 4", "Source Serif Pro", serif;
+}
+
+#frame {
+  position: relative;
+  padding: 2vw 5vw;
+  height: 45vw;
+  margin: none;
+  background-color: var(--body-bkgnd);
+  font-family: serif; 
+  /* "Source Serif 4", "Source Serif Pro",  */
   font-size: 2.5vw;
   font-variant-ligatures: no-common-ligatures;
   font-optical-sizing: auto;
@@ -52,12 +62,14 @@ body {
     "YTLC" 500;
   line-height: 1.8;
 }
-
-#frame {
-  position: relative;
-  padding: 2vw 5vw;
-  height: 45vw;
-  margin: none;
+#frame.you {
+  background-color: var(--frame-bkgnd);
+  font-size: 5vw;
+  font-variation-settings:
+    "wght" 800,
+    "wdth" 100,
+    "YTLC" 500;
+  letter-spacing: .2vw;
 }
 
 #display {
@@ -75,10 +87,11 @@ body {
   -moz-transition: opacity 2.5s ease-in-out;
   -webkit-transition: opacity 2.5s ease-in-out;
 }
-#display.rs {
+#display.riverSnow {
   top: 2.5vw;
   left: 33vw;
 }
+
 img {
   position: absolute;
   border: none;

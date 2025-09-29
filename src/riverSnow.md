@@ -10,8 +10,8 @@ pager: false
 <!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
 could be used above to load Google fonts -->
 <div id="frame">
-  <img class= "rs" src="data/riverSnow/riverSnow.jpg">
-  <div id="display" class="fade rs"></div>
+  <img src="data/riverSnow/riverSnow.jpg">
+  <div id="display" class="fade riverSnow"></div>
 </div>
 <div id="byline">
   <!-- <div class="clmleft"> -->

@@ -20,7 +20,7 @@ export default {
   head: `<link rel="icon" href="favicon.ico" type="image/x-icon" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:i,opsz,wdth,wght@300..400&display=swap" rel="stylesheet"></link>`,
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:i,opsz,wdth,wght@300..800&display=swap" rel="stylesheet"></link>`,
 
   // The path to the source root.
   root: "src",

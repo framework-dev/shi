@@ -1,3 +1,4 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap'); */
 /* @font-face {
   font-family: 'Source Serif 4';
   src: local('Source Serif 4'),
@@ -50,7 +51,7 @@ body {
   height: 45vw;
   margin: none;
   background-color: var(--body-bkgnd);
-  font-family: serif; 
+  font-family: "Source Serif 4", serif; 
   /* "Source Serif 4", "Source Serif Pro",  */
   font-size: 2.5vw;
   font-variant-ligatures: no-common-ligatures;

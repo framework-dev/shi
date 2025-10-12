@@ -26,8 +26,9 @@ export default {
   root: "src",
   style: "globalstyle.css",
   // with no globalStylesheets specified, Source Serif 4 is loaded by default
-  // but if you want other fonts laoded and want to use SS4, you need to specify it here
+  // but if you want other fonts loaded and also want to use SS4, you need to specify it here
   globalStylesheets: [
+    "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap",
     "https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght@6..12,75..125,200..1000&display=swap"
   ],
   // Some additional configuration options and their defaults:

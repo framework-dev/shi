@@ -1,6 +1,6 @@
 import { mod, sleep, msToTime } from "/components/utils.js";
-async function play(config, displayElem, scores, spels) {
-  console.log("entered play()");
+async function play(config, displayElem, spels, paras, scores) {
+  console.log("entered play()", scores);
   let cycStart,
     fadePause = 0,
     fadeWords = config.fadeWords,
@@ -8,6 +8,7 @@ async function play(config, displayElem, scores, spels) {
     loopCount = 0,
     loopMsg,
     paraNum = config.startingPoint,
+    numParas = paras.length,
     prevScore,
     rdnScore,
     score,
@@ -15,20 +16,22 @@ async function play(config, displayElem, scores, spels) {
     scoreNum = 0,
     toggle = true,
     yieldMsg;
-  if (config.fadeWords > 0) await sleep(config.interCycle);
    // >>> show whatever is currently visible in the display element
   if (config.fadeWords < 1 ) {
     console.log(">>> show whatever is currently visible in the display element");
     displayElem.style.opacity = 1;
-    await sleep(300);
   }
   // <<<
+  await sleep(config.interCycle); // pause before starting
+  //
+  // allows you to set a different fadeWords value for each paragraph
  if (typeof config.paraFadeWords != "undefined") fadeWords = config.paraFadeWords[paraNum];
  while (config.running) { // stopped with false in config
     if (paraNum == config.startingPoint) cycStart = Date.now();
-    // loop forever ...
+    // looping forever ...
     loopMsg = `loop: ${loopCount++}`;
-    // TODO - ALLOW MULTIPLE SCORED PER PARA (scoreNum goes to 0 on paraNum change)
+    // TODO - ALLOW MULTIPLE SCORES PER PARA (scoreNum goes to 0 on paraNum change)
+    console.log(scoreNum, paraNum);
     score = scores[scoreNum];
     // >>> (currently) unused mechanism for generating quasi-random scores on the fly (see 'Uchaf'):
     // if (typeof scores[scoreNum] === "string") {
@@ -56,13 +59,14 @@ async function play(config, displayElem, scores, spels) {
       // an 'AUTOFADE' score item can override the config.fadeWords default
       if (spelId === "AUTOFADE") { 
         console.log("autoFade");
-        // calculate autofade based on word number
+        // calculate autofade pause based on number of fadeWords
         fadePause = 0;
-        fadeWords = score[idx].pause;
+        fadeWords = score[idx].pause; // repurposing the pause property for AUTOFADE spels
         for (let fi = 0; fi < fadeWords; ++fi) {
           let fidx = (idx + fi + 1) % score.length;
           fadePause += score[fidx].pause;
         }
+        console.log("In-score AUTOFADE of:", fadeWords, "at score:", scoreNum, "item:", idx);
         continue;
       }
       // >>> provide some info:
@@ -70,6 +74,7 @@ async function play(config, displayElem, scores, spels) {
       if (spelId !== "PAUSE") {
         str = spels.get(spelId);
         if (str !== undefined) str = str.string;
+        // str contain the spel's html string
       }
       yieldMsg =
         loopMsg + `, score: ${scoreNum}, item: ${idx}, paraNum: ${paraNum}, id: ${spelId}, `;
@@ -77,9 +82,10 @@ async function play(config, displayElem, scores, spels) {
       // console.log(yieldMsg);
       // <<< (in other contexts:) yield yieldMsg;
       //
-      // >>> these next lines do all the WORK
-      let elem;
-      let charToggle = async (spel) => {
+      // >>> this defines a function that toggles the visibility of each character in a spel
+      // one at a time, with a delay between each one
+      // called below if config.charFades is true
+      const charToggle = async (spel) => {
         const chars = Array.from(spel.children);
         for (const char of chars) {
           char.classList.toggle("visible");
@@ -87,7 +93,11 @@ async function play(config, displayElem, scores, spels) {
           await sleep(char.classList.contains("visible") ? config.charInterval : 0);
         }
       }
+      // <<<
+      // >>> these next lines most of the WORK
+      let elem;
       if (spelId !== "PAUSE") {
+        // just pause and continue
         elem = document.getElementById(spelId);
         if (config.charFades) {
           await charToggle(elem);
@@ -96,6 +106,7 @@ async function play(config, displayElem, scores, spels) {
         }
         // DEBUG console.log(elem.innerHTML);
       }
+      // pause for both actual spels and PAUSE items
       await sleep(score[idx].pause * config.slower); // pauses usually taken from the temporal data
       if (spelId === "PAUSE") continue;
       // not a pause item, so check for fadeWords
@@ -129,11 +140,11 @@ async function play(config, displayElem, scores, spels) {
       await sleep(50 * config.slower);
     }
     // <<<
-    // bump paraNum if more than one
-    if (config.numParas > 1) {
-      paraNum = ++paraNum % config.numParas;
-      if (paraNum == 0) paraNum += config.startingPoint;
-    }
+    // bump paraNum if needed
+    paraNum = ++paraNum % numParas;
+    // can set a higher starting point in config, usually for debugging
+    if (paraNum == 0) paraNum += config.startingPoint;
+    //
     if (paraNum == config.startingPoint) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
       await sleep(config.interCycle * config.slower); // end of cycle pause

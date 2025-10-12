@@ -1,12 +1,24 @@
 ---
 title: River Snow
 toc: false
-style: style.css
 header: false
 footer: false
 sidebar: false
 pager: false
 ---
+<style>
+  html {
+    background-color: var(--black);
+  }
+  body {
+    color: var(--text);
+    background-color: var(--black);
+  }
+  #display {
+    top: 2.5vw;
+    left: 33vw;
+  }
+</style>
 <!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
 could be used above to load Google fonts -->
 <div id="frame">

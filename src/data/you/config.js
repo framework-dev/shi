@@ -3,7 +3,6 @@ const lineHeight = 2.8;
 const linesPer = Math.floor(heightVw / lineHeight);
 const config = {
   startingPoint: 0,
-  numParas: 1,
   running: true,
   charFades: true,
   charInterval: 8,
@@ -18,8 +17,8 @@ const config = {
   // these times are all now hundredths of seconds
   creditsPause: 0, // zero for no credits
   interCycle: 300,
-  interScore: 5000,
+  interScore: 300,
   scoredPause: 100,
-  slower: 0
+  slower: 1
 }
 export { config };

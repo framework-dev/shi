@@ -24,6 +24,12 @@ export default {
 
   // The path to the source root.
   root: "src",
+  style: "globalstyle.css",
+  // with no globalStylesheets specified, Source Serif 4 is loaded by default
+  // but if you want other fonts laoded and want to use SS4, you need to specify it here
+  globalStylesheets: [
+    "https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght@6..12,75..125,200..1000&display=swap"
+  ],
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)

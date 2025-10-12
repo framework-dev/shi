@@ -1,33 +1,22 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap'); */
-/* @font-face {
-  font-family: 'Source Serif 4';
-  src: local('Source Serif 4'),
-    url('data/SourceSerif4-Regular.ttf.woff2') format('woff2'),
-    url('data/SourceSerif4-Regular.ttf.woff') format('woff'),
-    url('data/SourceSerif4-Regular.ttf') format('ttf')
-} */
-
-/* font-face not (yet) working in Observable Framework, July 2024 */
-
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
 :root {
   /* dark on light */
   /* --bkgnd: #fffff5; */
   /* --context: #39CCEE; */
-  /* --em: black; */
-  /* --text: #AAAAAA; */
   /* -------------- */
   /* light on dark */
-  --text: floralwhite;
-  --em: white;
+  --text-white: floralwhite;
+  --white: white;
   --context: #af5c13;
-  --body-bkgnd: black;
+  --black: black;
   --frame-bkgnd: #00182f;
   /* possible clrs.cc blues #0074D9 lighter #7FDBFF teal #39CCCC */
   /* very dark blue: #00182f */
 }
+/* font-face not (yet) working in Observable Framework, July 2024 */
 
 html {
-  background-color: var(--body-bkgnd);
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -40,8 +29,6 @@ html {
 
 body {
   margin-top: 0;
-  color: var(--text);
-  background-color: var(--body-bkgnd);
   cursor: none;
 }
 
@@ -51,8 +38,7 @@ body {
   height: 45vw;
   margin: none;
   background-color: var(--body-bkgnd);
-  font-family: "Source Serif 4", serif; 
-  /* "Source Serif 4", "Source Serif Pro",  */
+  font-family: "Source Serif 4", serif;
   font-size: 2.5vw;
   font-variant-ligatures: no-common-ligatures;
   font-optical-sizing: auto;
@@ -63,19 +49,9 @@ body {
     "YTLC" 500;
   line-height: 1.8;
 }
-#frame.you {
-  background-color: var(--frame-bkgnd);
-  font-size: 5vw;
-  font-variation-settings:
-    "wght" 800,
-    "wdth" 100,
-    "YTLC" 500;
-  letter-spacing: .2vw;
-}
-
 #display {
   position: absolute;
-  color: var(--text);
+  color: var(--text-white);
   margin: none;
   top: 7vw;
   left: 30vw;
@@ -87,10 +63,6 @@ body {
   -ms-transition: opacity 2.5s ease-in-out;
   -moz-transition: opacity 2.5s ease-in-out;
   -webkit-transition: opacity 2.5s ease-in-out;
-}
-#display.riverSnow {
-  top: 2.5vw;
-  left: 33vw;
 }
 
 img {
@@ -131,7 +103,7 @@ img.zi {
 }
 
 #byline a {
-  color: var(--text);
+  color: var(--text-white);
   text-decoration: none;
   overflow: hidden;
 }
@@ -166,7 +138,7 @@ img.zi {
 #display em.visible {
   font-style: normal;
   /* font-weight: bold; */
-  color: var(--em);
+  color: var(--white);
   /* darkred is good for debugging with orange */
 }
 
@@ -181,9 +153,9 @@ span {
     text-shadow .7s ease-in-out;
   -webkit-transition: color .7s ease-in-out,
     text-shadow .7s ease-in-out;
-  }
+ }
 
-.clmleft {
+ .clmleft {
   float: left;
   text-align: left;
   width: 30%;
@@ -208,8 +180,8 @@ span {
 }
 
 .visible {
-  color: var(--text);
-  /* text-shadow: .6ch .2ch .7ch var(--em); */
+  color: var(--text-white);
+  /* text-shadow: .6ch .2ch .7ch var(--white); */
 }
 
 .char {

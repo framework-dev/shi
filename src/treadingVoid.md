@@ -1,14 +1,20 @@
 ---
 title: Treading the Void
 toc: false
-style: style.css
 header: false
 footer: false
 sidebar: false
 pager: false
 ---
-<!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
-could be used above to load Google fonts -->
+<style>
+  html {
+    background-color: var(--black);
+  }
+  body {
+    color: var(--text);
+    background-color: var(--black);
+  }
+</style>
 <div id="frame">
   <img class= "zi" src="data/treadingVoid/tssf_181_2024.jpg">
   <div id="display" class="fade"></div>

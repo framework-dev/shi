@@ -1,14 +1,34 @@
 ---
 title: you
 toc: false
-style: style.css
 header: false
 footer: false
 sidebar: false
 pager: false
 ---
+<style>
+  html {
+    background-color: var(--black);
+  }
+  body {
+    color: var(--text);
+    background-color: var(--black);
+  }
+  #frame {
+    background-color: var(--darkblue);
+    font-size: 5vw;
+    font-variation-settings:
+      "wght" 700,
+      "wdth" 100,
+      "YTLC" 500;
+    letter-spacing: .2vw;
+  }
+  span {
+    margin: .2vw;
+   }
+</style>
 <!-- head: "<link rel='stylesheet' href='/data/you/style.css' type='text/css' media='all' />" -->
-<div id="frame" class="you">
+<div id="frame">
   <div id="display" class="fade rs"></div>
 </div>
 
@@ -35,8 +55,10 @@ if (config.charFades) {
     let str = spel.textContent;
     let strlen = str.length;
     str = [...str].map(char => `<span class="char">${char}</span>`).join('');
+    // next line for this piece only
+    // str = spel.id == "you_2" ? str.replaceAll("you", "you big") : str;
     spel.innerHTML = str;
-    // DEBUG console.log(str);
+    // console.log(str); // DEBUG
     spel.style.opacity = 1;
   }
 }
@@ -44,6 +66,6 @@ if (config.charFades) {
 console.log("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---
 import { play } from "/components/play.js";
-// console.log("scores:", scores); // DEBUG
-if (config.running) play(config, displayElem, scores, spels);
+console.log("scores:", scores); // DEBUG
+if (config.running) play(config, displayElem, spels, paras, scores);
 ```

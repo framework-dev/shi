@@ -1,14 +1,24 @@
 ---
 title: Reading
 toc: false
-style: style.css
 header: false
 footer: false
 sidebar: false
 pager: false
 ---
-<!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
-could be used above to load Google fonts -->
+<style>
+  html {
+    background-color: var(--black);
+  }
+  body {
+    color: var(--text);
+    background-color: var(--black);
+  }
+  #display {
+    top: 2.5vw;
+    left: 33vw;
+  }
+</style>
 <div id="frame">
   <!-- <img class= "rs" src="data/riverSnow/riverSnow.jpg"> -->
   <div id="display" class="fade rs"></div>
@@ -55,5 +65,5 @@ console.log("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---
 import { play } from "/components/play.js";
 // console.log("scores:", scores); // DEBUG
-if (config.running) play(config, displayElem, scores, spels);
+if (config.running) play(config, displayElem, spels, paras, scores);
 ```

@@ -11,21 +11,33 @@ pager: false
     background-color: var(--black);
   }
   body {
-    color: var(--text);
     background-color: var(--black);
   }
   #frame {
-    background-color: var(--darkblue);
+    font-family: "Nunito Sans", sans;
+    background-color: var(--black);
     font-size: 5vw;
     font-variation-settings:
-      "wght" 700,
+      "wght" 900,
       "wdth" 100,
       "YTLC" 500;
     letter-spacing: .2vw;
   }
   span {
     margin: .2vw;
-   }
+  }
+  .char {
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+  }
+
+  .char.visible {
+    opacity: 1;
+  }
 </style>
 <!-- head: "<link rel='stylesheet' href='/data/you/style.css' type='text/css' media='all' />" -->
 <div id="frame">

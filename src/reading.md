@@ -34,6 +34,17 @@ pager: false
 
 ```js
 console.log("--- Reading, July 2025 ---");
+// document.getElementById("byline").style.opacity = 1;
+// window.onload = () => {
+  if (window != window.top) {
+    console.log("This page is in an iframe");
+    document.getElementById("byline").style.opacity = 1;
+  }
+  else {
+    console.log("This window is top");
+    document.getElementById("byline").style.opacity = 1;
+  }
+// }
 import { config } from "/data/reading/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here

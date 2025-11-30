@@ -10,7 +10,7 @@
   --white: white;
   --context: #af5c13;
   --black: black;
-  --frame-bkgnd: #00182f;
+  --bkgnd-darkblue: #00182f;
   /* possible clrs.cc blues #0074D9 lighter #7FDBFF teal #39CCCC */
   /* very dark blue: #00182f */
 }
@@ -37,7 +37,7 @@ body {
   padding: 2vw 5vw;
   height: 45vw;
   margin: none;
-  background-color: var(--body-bkgnd);
+  background-color: var(--black);
   font-family: "Source Serif 4", serif;
   font-size: 2.5vw;
   font-variant-ligatures: no-common-ligatures;
@@ -79,7 +79,8 @@ img.zi {
 }
 
 #byline {
-  background-color: var(--bkgnd);
+  color: var(--text-white);
+  background-color: var(--black);
   font-size: 1.6vw;
   line-height: 1.1;
   margin: none;

@@ -11,7 +11,6 @@ pager: false
     background-color: var(--black);
   }
   body {
-    color: var(--text);
     background-color: var(--black);
   }
 </style>

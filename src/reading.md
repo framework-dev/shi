@@ -42,7 +42,7 @@ console.log("--- Reading, July 2025 ---");
   }
   else {
     console.log("This window is top");
-    document.getElementById("byline").style.opacity = 1;
+    document.getElementById("byline").style.opacity = 0;
   }
 // }
 import { config } from "/data/reading/config.js";

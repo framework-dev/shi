@@ -1,5 +1,5 @@
 ---
-title: River Snow
+title: Maple Bridge
 toc: false
 header: false
 footer: false
@@ -11,23 +11,34 @@ pager: false
     background-color: var(--black);
   }
   body {
-    color: var(--text);
     background-color: var(--black);
   }
+  img {
+    position: absolute;
+    border: none;
+    top: -1.5vw;
+    left: 0;
+    height: 100%;
+    width: auto;
+  }
+  img.zi {
+    filter: invert(1);
+  }
+  #frame {
+    font-size: 2vw;
+  }
   #display {
-    top: 2.5vw;
-    left: 33vw;
+    top: 2.8vw;
+    left: 18vw;
   }
 </style>
-<!-- head: "<link rel='stylesheet' href='style.css' type='text/css' media='all' />"
-could be used above to load Google fonts -->
 <div id="frame">
-  <img src="data/riverSnow/riverSnow.jpg">
-  <div id="display" class="fade riverSnow"></div>
+  <img class= "zi" src="data/mapleBridge/ZhengGui_shu_FengQiaoYeBo_ZhangJi.jpg">
+  <div id="display" class="fade"></div>
 </div>
 <div id="byline">
   <!-- <div class="clmleft"> -->
-    <span id="bytext"><cite>River Snow</cite> by Liu Zongyuan (773-819), translated by John for 2020/21.<br>Contemporary calligraphy from the book <cite>Tangshi Shufa</cite>.</span>
+    <span id="bytext"><cite>Maple Bridge Mooring at Night</cite> by Zhang JI (fl. ), translated by John for 2025/26.<br>Original calligraphy by and courtesy of Zheng Gui.</span>
   <!-- </div> -->
   <!-- <div class="clmright">
     <span style="font-size: 1.2vw;">John C.</span>
@@ -35,8 +46,8 @@ could be used above to load Google fonts -->
 </div>
 
 ```js
-console.log("--- River Snow, orig. 2020/21, updated May 2025 ---");
-import { config } from "/data/riverSnow/config.js";
+console.log("--- Maple Bridge, Dec 2025 ---");
+import { config } from "/data/mapleBridge/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this
@@ -46,12 +57,12 @@ var displayElem = document.getElementById("display");
 var paraNum, paras, scores, spels;
 // --- preprocessing ---
 console.log("--- preprocessing begins ---"); // DEBUG
-spels = new Map(await FileAttachment("/data/riverSnow/spels.json").json());
+spels = new Map(await FileAttachment("/data/mapleBridge/spels.json").json());
 displayElem.innerHTML = Array.from(spels.values())
   .map((spel) => spel.html)
   .join("");
-paras = await FileAttachment("/data/riverSnow/paras.json").json();
-scores = await FileAttachment("/data/riverSnow/scores.json").json();
+paras = await FileAttachment("/data/mapleBridge/paras.json").json();
+scores = await FileAttachment("/data/mapleBridge/scores.json").json();
 if (config.charFades) {
   const spels = document.querySelectorAll('.spel');
   for (const spel of spels) {
@@ -83,17 +94,16 @@ async function play() {
     toggle = true,
     yieldMsg;
   if (config.fadeWords > 0) await sleep(config.interCycle);
-   // >>> show whatever is currently visible in the display element
-  if (config.fadeWords < 1 ) {
-    console.log(">>> show whatever is currently visible in the display element");
-    displayElem.style.opacity = 1;
-    await sleep(300);
-  }
-  // <<<
- while (config.running) { // stopped with false in config
+  while (config.running) { // stopped with false in config
     if (paraNum == config.startingPoint) cycStart = Date.now();
     // loop forever ...
     loopMsg = `loop: ${loopCount++}`;
+    // >>> show whatever is currently visible in the display element
+    if (config.fadeWords < 1 ) {
+      displayElem.style.opacity = 1;
+      await sleep(300);
+    }
+    // <<<
     score = scores[scoreNum];
     // >>> (currently) unused mechanism for generating quasi-random scores on the fly (see 'Uchaf'):
     // if (typeof scores[scoreNum] === "string") {
@@ -138,10 +148,10 @@ async function play() {
       yieldMsg =
         loopMsg + `, score: ${scoreNum}, item: ${idx}, paraNum: ${paraNum}, id: ${spelId}, `;
       yieldMsg += `string: '${str}', pause: ${score[idx].pause}`;
-      // console.log(yieldMsg);
+      console.log(yieldMsg);
       // <<< (in other contexts:) yield yieldMsg;
       //
-      // >>> these next lines do all the WORK
+      // >>> these next lines do all the work
       let elem;
       if (spelId !== "PAUSE") {
         elem = document.getElementById(spelId);
@@ -150,7 +160,6 @@ async function play() {
         } else {
           elem.classList.toggle("visible");
         }
-        // DEBUG console.log(elem.innerHTML);
       }
       await sleep(score[idx].pause); // pauses usually taken from the temporal data
       if (spelId === "PAUSE") continue;
@@ -170,22 +179,21 @@ async function play() {
         });
       }
     } // end of loop thru current score
-    // DEBUG console.log("fadePause", fadePause, "interScr", config.interScore);
     await sleep(fadePause + config.interScore); // pause between scores
     // >>> remove old paragraph:
     if (config.fadeWords === 0) {
-      console.log(">>> remove old paragraph");
       displayElem.style.opacity = 0;
       await sleep(275);
       paras[paraNum].forEach(p => document.getElementById(p).classList.toggle("visible"));
       await sleep(50);
     }
     // <<<
-    // bump paraNum if more than one
-    if (config.numParas > 1) paraNum = ++paraNum;
+    // bump paraNum
+    paraNum = ++paraNum;
     if (paraNum >= (config.numParas + config.startingPoint)) {
       console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
       paraNum = config.startingPoint;
+      scoreNum = -1; // might need checking, needed if scores data for > paraNums exists
       await sleep(config.interCycle); // end of cycle pause
       if (config.creditsPause > 0) {
         let bl = document.getElementById("byline");
@@ -207,6 +215,5 @@ async function charToggle (spel) {
     await sleep(char.classList.contains("visible") ? config.charInterval : 0);
   }
 }
-
 if (config.running) play();
 ```

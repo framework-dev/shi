@@ -18,7 +18,7 @@ const config = {
   // these times are all now hundredths of seconds
   creditsPause: 0, // zero for no credits
   interCycle: 300,
-  interScore: 100,
+  interScore: 300,
   scoredPause: 100,
   factor: .5, // speed factor for testing
 }

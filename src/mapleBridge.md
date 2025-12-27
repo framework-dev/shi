@@ -28,6 +28,7 @@ pager: false
     font-size: 2vw;
   }
   #display {
+    cursor: none;
     top: 2.8vw;
     left: 18vw;
   }
@@ -38,7 +39,7 @@ pager: false
 </div>
 <div id="byline">
   <!-- <div class="clmleft"> -->
-    <span id="bytext"><cite>Maple Bridge Mooring at Night</cite> by Zhang JI (fl. ), translated by John for 2025/26.<br>Original calligraphy by and courtesy of Zheng Gui.</span>
+    <span id="bytext"><cite>Maple Bridge Mooring at Night</cite> by Zhang Ji (fl. 753), translated by John for 2025/26.<br>Original calligraphy by and courtesy of Zheng Gui.</span>
   <!-- </div> -->
   <!-- <div class="clmright">
     <span style="font-size: 1.2vw;">John C.</span>
@@ -132,7 +133,7 @@ async function play() {
       //
       switch (scoreIdx) {
         case 0: // all
-          config.factor = .7;
+          config.factor = .75;
           visualEffect = "visible";
           break;
         case 1: // poem
@@ -142,26 +143,32 @@ async function play() {
           config.factor = .25;
           visualEffect = "glow";
           score = shuffle(paraScores[scoreIdx]);
+          config.interScore = 0;
           break;
         case 5: // erase to show poem
-          config.factor = .5;
+          config.factor = 1;
           visualEffect = "visible";
+          config.interScore = 500;
           break;
         case 6: // poem erasing
-          config.factor = .7;
+          config.factor = 1;
           visualEffect = "visible";
+          config.interScore = 200;
           break;
         case 7: // poem to show
           config.factor = 1;
           visualEffect = "visible";
+          config.interScore = 500;
           break;
         case 8: // erase to fill
           config.factor = .5;
           visualEffect = "visible";
+          config.interScore = 200;
           break;
         case 9: // all to clear
           config.factor = 0;
           visualEffect = "visible";
+          config.interScore = 300;
       }
       //
       for (idx = 0; idx < score.length; idx++) {

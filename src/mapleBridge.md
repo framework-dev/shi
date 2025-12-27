@@ -17,7 +17,7 @@ pager: false
     position: absolute;
     border: none;
     top: -1.5vw;
-    left: 0;
+    left: -2vw;
     height: 100%;
     width: auto;
   }
@@ -30,7 +30,10 @@ pager: false
   #display {
     cursor: none;
     top: 2.8vw;
-    left: 18vw;
+    left: 15.5vw;
+  }
+  #byline {
+    color: lightgrey;
   }
 </style>
 <div id="frame">

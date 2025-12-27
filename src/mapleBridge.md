@@ -31,6 +31,7 @@ pager: false
     cursor: none;
     top: 3.3vw;
     left: 15vw;
+    /* font-variation-settings: 'opsz' 60; */
     font-optical-sizing: none;
   }
   #byline {

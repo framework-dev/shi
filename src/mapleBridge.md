@@ -31,6 +31,7 @@ pager: false
     cursor: none;
     top: 3.3vw;
     left: 15vw;
+    font-optical-sizing: none;
   }
   #byline {
     color: lightgrey;

@@ -2,9 +2,9 @@ function mod(n, m) {
   // mod function that handles negative numbers, usage: mod(num, modulous)
   return ((n % m) + m) % m;
 }
-function sleep(hundredths) {
+function sleep(hundredths, factor=1) {
   if (hundredths < 0) hundredths = 0;
-  return new Promise(resolve => setTimeout(resolve, hundredths * 10));
+  return new Promise(resolve => setTimeout(resolve, hundredths * 10 * factor));
 }
 function msToTime(duration) {
   var seconds = parseInt((duration / 1000) % 60)
@@ -15,4 +15,16 @@ function msToTime(duration) {
 
   return minutes + ":" + seconds;
 }
-export { mod, sleep, msToTime }
+function shuffle (b) {
+  let a = b.slice(); // make a copy
+  let i = a.length;
+  if (i < 2) return a;
+  while (--i > 0) {
+    let j = ~~(Math.random() * (i + 1)); // ~~ is a common optimization for Math.floor
+    let t = a[j];
+    a[j] = a[i];
+    a[i] = t;
+  }
+  return a;
+}
+export { mod, sleep, msToTime, shuffle }

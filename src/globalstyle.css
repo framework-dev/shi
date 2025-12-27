@@ -143,7 +143,7 @@ img.zi {
   /* darkred is good for debugging with orange */
 }
 
-span {
+/* span {
   transition: color .7s ease-in-out,
     text-shadow .7s ease-in-out;
   -o-transition: color .7s ease-in-out,
@@ -154,7 +154,7 @@ span {
     text-shadow .7s ease-in-out;
   -webkit-transition: color .7s ease-in-out,
     text-shadow .7s ease-in-out;
- }
+ } */
 
  .clmleft {
   float: left;
@@ -180,18 +180,28 @@ span {
   display: none;
 }
 
-.visible {
+/* .visible {
   color: var(--text-white);
-  /* text-shadow: .6ch .2ch .7ch var(--white); */
+  text-shadow: .6ch .2ch .7ch var(--white);
+} */
+
+.glow {
+  color: lemonchiffon;
+  text-shadow: 0 -0.3ch 0.5ch white,
+    0 0.3ch 0.5ch white,
+    0 -0.6ch 1ch white,
+    0 0.6ch 1ch white;
+    /* 0 0 0.5ch white,
+    0 0 1.5ch white; */
 }
 
 .char {
   opacity: 0;
-  transition: opacity 1.3s ease-in-out;
-  -o-transition: opacity 1.3s ease-in-out;
-  -ms-transition: opacity 1.3s ease-in-out;
-  -moz-transition: opacity 1.3s ease-in-out;
-  -webkit-transition: opacity 1.3s ease-in-out;
+  transition: all 1.3s ease-in-out;
+  -o-transition: all 1.3s ease-in-out;
+  -ms-transition: all 1.3s ease-in-out;
+  -moz-transition: all 1.3s ease-in-out;
+  -webkit-transition: all 1.3s ease-in-out;
 }
 
 .char.visible {

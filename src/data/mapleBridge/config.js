@@ -6,7 +6,7 @@ const config = {
   numParas: 1,
   running: true,
   charFades: true,
-  charInterval: 8,
+  charInterval: 6,
   fadeWords: -1, // zero for no autoFade; -1 for scores do fading
   // cosmetic
   // "rColumn": 33,
@@ -18,8 +18,8 @@ const config = {
   // these times are all now hundredths of seconds
   creditsPause: 0, // zero for no credits
   interCycle: 300,
-  interScore: 300,
+  interScore: 100,
   scoredPause: 100,
-  slower: 0
+  factor: .5, // speed factor for testing
 }
 export { config };

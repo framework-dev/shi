@@ -39,7 +39,7 @@ pager: false
   }
 </style>
 <div id="frame">
-  <img class= "zi" src="data/mapleBridge/ZhengGui_shu_FengQiaoYeBo_ZhangJi.jpg">
+  <img class= "zi" src="data/mapleBridge/ZhengZhong_shu_FengQiaoYeBo_ZhangJi.jpg">
   <div id="display" class="fade"></div>
 </div>
 <div id="byline">

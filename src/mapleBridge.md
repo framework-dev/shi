@@ -44,7 +44,7 @@ pager: false
 </div>
 <div id="byline">
   <!-- <div class="clmleft"> -->
-    <span id="bytext"><cite>Maple Bridge Mooring at Night</cite> by Zhang Ji (fl. 753), translated by John for 2025/26.<br>Original calligraphy by and courtesy of Zheng Gui.</span>
+    <span id="bytext"><cite>Maple Bridge Mooring at Night</cite> by Zhang Ji (fl. 753), translated by John for 2025/26.<br>Original calligraphy by and courtesy of Zheng Zhong.</span>
   <!-- </div> -->
   <!-- <div class="clmright">
     <span style="font-size: 1.2vw;">John C.</span>

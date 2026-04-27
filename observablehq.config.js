@@ -30,7 +30,7 @@ export default {
   globalStylesheets: [
     "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap",
     "https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wdth,wght@6..12,75..125,200..1000&display=swap",
-    "https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@100..900&display=swap"
+    "https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@100;200;300;400;500;600;700;800;900&display=swap"
   ],
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.

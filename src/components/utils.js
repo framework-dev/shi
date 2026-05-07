@@ -27,4 +27,8 @@ function shuffle (b) {
   }
   return a;
 }
-export { mod, sleep, msToTime, shuffle }
+
+const createDevLog = (config) => (...args) => {
+  if (!config.PRODUCTION) console.log(...args);
+};
+export { mod, sleep, msToTime, shuffle, createDevLog }

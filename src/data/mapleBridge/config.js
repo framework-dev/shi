@@ -2,6 +2,7 @@ const heightVw = 50;
 const lineHeight = 2.8;
 const linesPer = Math.floor(heightVw / lineHeight);
 const config = {
+  PRODUCTION: true,
   startingPoint: 0,
   numParas: 1,
   running: true,

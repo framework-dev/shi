@@ -53,16 +53,19 @@ pager: false
 
 ```js
 console.log("--- Maple Bridge, Dec 2025 ---");
+// logger bound to this poem's config
 import { config } from "/data/mapleBridge/config.js";
 // --- DEBUG congiguration
 // config.startingPoint = 2; // DEBUG when RECORDING & REDUCTING EDIT here
 // config.numParas = 2; // DEBUG and here: number of scores built depends on this
 // config.running = false; // DEBUG
-import { mod, sleep, msToTime, shuffle } from "/components/utils.js";
+import { mod, sleep, msToTime, shuffle, createDevLog } from "/components/utils.js";
+const devLog = createDevLog(config);
+//
 var displayElem = document.getElementById("display");
 var paraNum, paras, scores, spels;
 // --- preprocessing ---
-console.log("--- preprocessing begins ---"); // DEBUG
+devLog("--- preprocessing begins ---"); // DEBUG
 spels = new Map(await FileAttachment("/data/mapleBridge/spels.json").json());
 displayElem.innerHTML = Array.from(spels.values())
   .map((spel) => spel.html)
@@ -81,10 +84,10 @@ if (config.charFades) {
   }
 }
 // console.log(paras[config.startingPoint]); // DEBUG , paras, scores
-console.log("--- preprocessing done ---"); // DEBUG
+devLog("--- preprocessing done ---"); // DEBUG
 // --- animation, based on the play() method in observablehq.com/@shadoof/sounding ---
 async function play() {
-  console.log("entered play()");
+  devLog("entered play()");
   let cycStart,
     fadePause = 0,
     fadeWords = config.fadeWords,
@@ -131,7 +134,7 @@ async function play() {
       // }
       // <<<
       // console.log(scoreSet, "scoreNum", scoreNum, scoreSet[scoreNum]); // DEBUG
-      console.log("score:", scoreIdx, "score items:", score.length);
+      devLog("score:", scoreIdx, "score items:", score.length);
       //
       // This is where we inner-loop through each item in the current score and
       // display the string of its spel for the length of time in its pause property.
@@ -181,7 +184,7 @@ async function play() {
         let spelId = score[idx].id;
         // an 'AUTOFADE' score item can override the config.fadeWords default
         if (spelId === "AUTOFADE") { 
-          console.log("autoFade");
+          devLog("autoFade");
           // calculate autofade based on word number
           fadePause = 0;
           fadeWords = score[idx].pause;
@@ -200,7 +203,7 @@ async function play() {
         yieldMsg =
           loopMsg + `, score: ${scoreIdx}, item: ${idx}, paraNum: ${paraNum}, id: ${spelId}, `;
         yieldMsg += `string: '${str}', pause: ${score[idx].pause}`;
-        console.log(yieldMsg);
+        devLog(yieldMsg);
         // <<< (in other contexts:) yield yieldMsg;
         //
         // >>> these next lines do all the work
@@ -244,7 +247,7 @@ async function play() {
     // bump paraNum
     paraNum = ++paraNum;
     if (paraNum >= (config.numParas + config.startingPoint)) {
-      console.log("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
+      devLog("--- end of cycle --- Duration:", msToTime(Date.now() - cycStart)); // DEBUG
       paraNum = config.startingPoint;
       // scoreNum = -1; // might need checking, needed if scores data for > paraNums exists
       await sleep(config.interCycle); // end of cycle pause
